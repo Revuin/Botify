@@ -52,7 +52,7 @@ Jumps off repeatedly until the boss stage is detected. Next, it runs up to boss,
 1. Download and install Autohotkey v1.1
 https://www.autohotkey.com/download/ahk-install.exe
 2. Make sure the screen resolution is 1920 x 1080 and the game is fullscreen (Other resolutions are not supported at this time)
-3. Download the latest release of this bot 
+3. Download and extract the latest release of this bot 
 4. Run Botify.ahk
 
 
