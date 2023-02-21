@@ -48,6 +48,7 @@ Jumps off repeatedly until the boss stage is detected. Next, it runs up to boss,
   - Holding middle click will spam left click
 
 
+
 **Instructions:**
 1. Download and install Autohotkey v1.1
 https://www.autohotkey.com/download/ahk-install.exe
