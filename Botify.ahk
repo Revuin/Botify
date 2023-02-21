@@ -44,7 +44,7 @@ Gui Add, Text, x320 y182 w25 h17 +0x200 , F3
 Gui Font
 Gui Add, Picture, x72 y15 w251 h89, K:\My Drive\ToF\Gumroad\Botify logo.png
 Gui Font, s10
-Gui Add, DropDownList, x117 y136 w173 vDlist1, 2-3 Star Gates|Attack Loop|Boss Chest|Daily Tasks||Critical Abyss|Dimensional Trials|Dream Machine|Frontier Clash|Event|JO Carnival Party|JO Sadness Valley|Join game and Auto battle|Left-click Turbo|Raid|Sequential Phantasm
+Gui Add, DropDownList, x117 y136 w173 vDlist1, Attack Loop|Boss Chest|Daily Tasks||Critical Abyss|Dimensional Trials|Dream Machine|Frontier Clash|Event|JO Carnival Party|JO Sadness Valley|Join game and Auto battle|Left-click Turbo|Raid|Sequential Phantasm
 Gui Font
 Gui Font, s11 Bold
 Gui Add, Text, x153 y112 w101 h23 +0x200 , Select a bot
@@ -76,11 +76,7 @@ Button?:
 	GuiControlGet, Dlist1
 	; MsgBox %Dlist1%
 	
-	If (Dlist1 = "2-3 Star Gates")
-	{
-		MsgBox, Joins 2-3 star nanofiber/booster gates and enables auto-battle. `n`n1. Open chat`n2. Go to the recruit section`n3. Run bot
-	}
-	Else if (Dlist1 = "Attack Loop")
+	If (Dlist1 = "Attack Loop")
 	{
 		MsgBox, AFK farm nearby enemies using left clicks, skills (key 1)`, and relics (key 2 & 3). `n`nUseful for raids and world bosses
 	}
@@ -234,11 +230,7 @@ ButtonStart▶:
 	SetTimer, Focus, 5000, On
 
 	GuiControlGet, Dlist1
-	If (Dlist1 = "2-3 Star Gates")
-	{
-		#Include scripts/2-3 Star Gates.ahk
-	}
-	Else if (Dlist1 = "Attack Loop")
+	If (Dlist1 = "Attack Loop")
 	{
 		Loop
 		{
