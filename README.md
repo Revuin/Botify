@@ -30,7 +30,7 @@ Collection of bots for Tower of Fantasy. These are hack-free so they are much sa
 - Dream Machine
   - Kills the 2 named enemies in Aesperia repeatedly (See https://www.youtube.com/watch?v=g_HFqR7w430 for the location). Recommended to start in the crevice between the rocks and the wall so that if you get hit, you’ll be hit into the wall. This was built with Samir bound to R and Cocoritter to Q
 - Event
-  - Plays the Half-Anniversary Event. Recommended to run this overnight because it'll get last place each time`, which rewards only 100 tokens
+  - Plays the Half-Anniversary Event. Recommended to run this overnight because it'll get last place each time, which rewards only 100 tokens
 - Frontier Clash
   - Plays Frontier Clash and enables auto-battle for exp, support points, and vehicle parts
 - JO Carnival Party
