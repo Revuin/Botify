@@ -1,6 +1,6 @@
 # Botify
 
-Free collection of bots for Tower of Fantasy. These are hack-free so they are much safer to use because they don’t do anything different than what a regular player can do. 
+Collection of bots for Tower of Fantasy. These are hack-free so they are much safer to use because they don’t do anything different than what a regular player can do. 
 
 **Features:**
 - Attack Loop
