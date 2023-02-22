@@ -3,7 +3,7 @@
 		Tooltip, pressing F,0,0
 		send f
 		sleep 1000
-		ImageSearch, FoundX, FoundY, 1175, 700, 1335, 835, *50 PerfectDecipher.png
+		ImageSearch, FoundX, FoundY, 1175, 700, 1335, 835, *50 img/PerfectDecipher.png
 		If (ErrorLevel = 0) {
 			Tooltip, use perfect decipher,0,0
 			Mousemove %FoundX%, %FoundY% ;Open
@@ -14,7 +14,7 @@
 		Else {
 			Tooltip, chest not avaiable yet,0,0
 		}
-		ImageSearch, FoundX, FoundY, 1175, 700, 1335, 835, *50 PerfectDecipher_2.png
+		ImageSearch, FoundX, FoundY, 1175, 700, 1335, 835, *50 img/PerfectDecipher_2.png
 		If (ErrorLevel = 0) {
 			Tooltip, use perfect decipher,0,0
 			Mousemove %FoundX%, %FoundY% ;Open
@@ -25,7 +25,7 @@
 		Else {
 			Tooltip, chest not avaiable yet,0,0
 		}
-		ImageSearch, FoundX, FoundY, 1725, 860, 1795, 925, *20 Respawn.png
+		ImageSearch, FoundX, FoundY, 1725, 860, 1795, 925, *20 img/Respawn.png
 		If (ErrorLevel = 0) {
 			Tooltip, Dead,0,0
 			click %FoundX%, %FoundY% ;Respawn
