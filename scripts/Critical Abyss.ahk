@@ -28,7 +28,7 @@ Loop {
 	sleep 1000
 	Loop {
 		Tooltip, Searching for Frontier Clash,0,0
-		ImageSearch, FoundX, FoundY, 350, 180, 1655, 330, *50 TheCriticalAbyss.png
+		ImageSearch, FoundX, FoundY, 350, 180, 1655, 330, *50 img/TheCriticalAbyss.png
 		If (ErrorLevel = 0) {
 			MouseMove %FoundX%, %FoundY%
 			sleep 1000
@@ -60,16 +60,16 @@ Loop {
 	click %FoundX%, %FoundY%
 	
 	Loop {
-		ImageSearch, FoundX, FoundY, 460, 970, 1390, 1080, *5 Loading.png
+		ImageSearch, FoundX, FoundY, 460, 970, 1390, 1080, *5 img/Loading.png
 		If (ErrorLevel=0) {
 			Tooltip, Loading screen found,0,0
 			break
 		}
-		ImageSearch, FoundX, FoundY, 1355, 720, 1615, 835, *30 Go.png
+		ImageSearch, FoundX, FoundY, 1355, 720, 1615, 835, *30 img/Go.png
 		If (ErrorLevel=0) {
 			click %FoundX%, %FoundY%
 		}
-		ImageSearch, FoundX, FoundY, 1355, 720, 1615, 835, *30 Go_Hover.png
+		ImageSearch, FoundX, FoundY, 1355, 720, 1615, 835, *30 img/Go_Hover.png
 		If (ErrorLevel=0) {
 			click %FoundX%, %FoundY%
 		}
@@ -78,7 +78,7 @@ Loop {
 	
 	Loading:
 	Loop {
-		ImageSearch, FoundX, FoundY, 460, 970, 1390, 1080, *5 Loading.png
+		ImageSearch, FoundX, FoundY, 460, 970, 1390, 1080, *5 img/Loading.png
 		If (ErrorLevel=0) {
 			Tooltip, Loading screen found,0,0
 			sleep 250
@@ -86,7 +86,7 @@ Loop {
 		Else {
 			Tooltip, Loading screen not found,0,0
 			sleep 500
-			ImageSearch, FoundX, FoundY, 460, 970, 1390, 1080, *5 Loading.png
+			ImageSearch, FoundX, FoundY, 460, 970, 1390, 1080, *5 img/Loading.png
 			If (ErrorLevel=0)
 				goto Loading
 			Else {
@@ -191,12 +191,12 @@ If (p1=0xEDA63E and p2=0xEDA63E and p3=0xEDA63E) {
 	SetTimer, endCheck, delete
 	gtfo = 1
 }
-ImageSearch, FoundX, FoundY, 770, 490, 900, 545, *20 Dead.png
+ImageSearch, FoundX, FoundY, 770, 490, 900, 545, *20 img/Dead.png
 If (ErrorLevel=0) {
 	Tooltip, Dead,0,0
 	dead = 1
 }
-ImageSearch, FoundX, FoundY, 770, 490, 900, 545, *20 Dead_2.png
+ImageSearch, FoundX, FoundY, 770, 490, 900, 545, *20 img/Dead_2.png
 If (ErrorLevel=0) {
 	Tooltip, Dead,0,0
 	dead = 1
