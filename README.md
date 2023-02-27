@@ -35,7 +35,7 @@ Collection of bots for Tower of Fantasy. These are hack-free so they are much sa
 - Frontier Clash
   - Plays Frontier Clash and enables auto-battle for exp, support points, and vehicle parts
 - JO Carnival Party
-  - (In development) Going to boss chest works 80% of the time. Recommended to equip Lin or long range weapon to R
+  - Plays Joint Operation Carnival Party Difficulty 3. Going to boss chest works 80% of the time but likely won't be fixed because there's no easy solution to the camera angle changing when clicking. Recommended to equip Lin or long range weapon to R
 - JO Sadness Valley
   - (In development) Not fully working. Detecting the boss stage platform doesn't work reliably right now. If you want to try making this work, replace img/SadnessValleyEnd.png with a screenshot of the ground to the bottom-left of your character's feet once you're at the boss stage platform
 Jumps off repeatedly until the boss stage is detected. Next, it runs up to boss, enables auto-battle, and opens chest once boss is dead
