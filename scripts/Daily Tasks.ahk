@@ -1,9 +1,7 @@
-﻿Weekly = 0
-AppointedResearch = 1
+﻿AppointedResearch = 1
 
-
-Loop, 10 
-{ ;Check for Reward Recovery
+Loop, 10 ;Check for Reward Recovery
+{ 
 	ImageSearch, FoundX, FoundY, 0, 730, 1910, 910, *50 img/Claim.png
 	If (ErrorLevel = 0)
 	{
@@ -22,26 +20,6 @@ Loop, 10
 click 980, 1200 ;Blank
 sleep 2000
 
-; run "C:\Users\Revuin - Main\Desktop\Rev Engine\GH Injector\GH Injector - x64.exe"
-; tooltip, Waiting for GH Injector, 0, 0
-; winWait GH Injector - x64
-; sleep 1000
-; send {Enter}
-; sleep 3000
-; click 595, 495 ;Inject
-; sleep 1000
-; winActivate, ahk_class UnrealWindow
-; sleep 2000
-; send {Insert}
-; sleep 1000
-; send {Enter}
-; sleep 10000
-; send {Insert}
-; sleep 1000
-; send {Enter}
-; sleep 10000
-
-
 Loop {
 	Tooltip, Searching for Channel blue dot,0,0
 	PixelGetColor, p1, 19, 62
@@ -55,7 +33,8 @@ Loop {
 	Else
 		sleep 500
 }
-;START Daily Box, Vitality solution ====================================================================
+
+;Daily Box, Vitality solution ====================================================================
 send {Alt down}
 sleep 100
 send 4
@@ -80,9 +59,8 @@ click 980, 1000 ;Blank
 sleep 2000
 click 55, 55 ;<
 sleep 2000
-;END Daily Box, Vitality solution ====================================================================
 
-;START Activities, Mia's Kitchen, Daily Bounty ====================================================================
+;Activities, Mia's Kitchen, Daily Bounty ====================================================================
 send {Alt down}
 sleep 100
 send 3
@@ -105,7 +83,8 @@ ImageSearch, FoundX, FoundY, 720, 450, 985, 560, *50 img/Claim_Weekly.png
 	}
 }
 
-If (Weekly = 1) {
+If (A_DDDD = Sunday)
+{
 	Loop, 20 {
 		click 860, 500 ;Claim (Individual Weekly)
 		sleep 500
@@ -186,9 +165,8 @@ sleep 1000
 ; sleep 2000
 ; click 55, 55 ;<
 ; sleep 2000
-;END Activities, Mia's Kitchen, Daily Bounty ====================================================================
 
-;START Supply Run, Rewards, Pass ====================================================================
+;Supply Run, Rewards, Pass ====================================================================
 send {Alt down}
 sleep 100
 send 1
@@ -300,9 +278,8 @@ sleep 1000
 send {escape}
 click 55, 55 ;<
 sleep 2000
-;END Supply Run, Rewards, Pass ====================================================================
 
-;START Crew ====================================================================
+;Crew ====================================================================
 send {Esc}
 sleep 2000
 click 1385, 250 ;CREW
@@ -382,9 +359,7 @@ If (Errorlevel = 1) { ;Run only if in a crew
 click 55, 55 ;<
 sleep 2000
 
-;END Crew ====================================================================
-
-;START Building Claim ===========================================================================================
+;Building Claim ===========================================================================================
 click 1225, 260 ;Casual
 sleep 2000
 click 1140, 570 ;Building
@@ -491,9 +466,8 @@ Loop {
 		}
 }
 sleep 5000
-;END Building Claim ===========================================================================================
 
-;START Appointed Research =====================================================================================
+;Appointed Research =====================================================================================
 If (AppointedResearch = 1)
 {
 	send b
@@ -534,9 +508,8 @@ If (AppointedResearch = 1)
 	click 55, 55 ;<
 	sleep 2000
 }
-;END Appointed Research =====================================================================================
 
-;START Mailbox =====================================================================================
+;Mailbox =====================================================================================
 send {escape}
 sleep 2000
 click 1320, 410 ;Friends
@@ -552,9 +525,48 @@ sleep 1000
 click 55, 55 ;<
 sleep 1000
 send {escape}
-;END Mailbox =====================================================================================
+
+;Commissary Weekly =============================================================
+If (A_DDDD = Monday)
+{
+	send {escape}
+	sleep 2000
+	click 1540, 235 ;Commissary
+	sleep 2000
+	CommissaryBuy("BoosterModule.png","600","110","1910","715","Booster Module", 30)
+	CommissaryBuy("AdvancementModule.png","600","110","1910","715","Advancement Module", 30)
+
+	click 125, 305 ;Spacetime Store
+	CommissaryBuy("DataRepeater.png","600","110","1910","715","Data Repeater", 30)
+	CommissaryBuy("AdvancementModule2.png","600","110","1910","715","AdvancementModule2", 30)
+	CommissaryBuy("BoosterModule2.png","600","110","1910","715","BoosterModule2", 30)
+
+	click 130, 665 ;Support Store
+	sleep 2000
+	CommissaryBuy("GoldNucleus.png","600","110","1910","715","GoldNucleus", 30)
+	CommissaryBuy("ProofOfPurchase.png","600","110","1910","715","ProofOfPurchase", 30)
+	CommissaryBuy("SpacetimeCrystalFragments.png","600","110","1910","715","SpacetimeCrystalFragments", 30)
+
+	click 1310, 640, Left, Down
+	sleep 150
+	mousemove 1310, 400
+	sleep 150
+	mousemove 1310, 200
+	sleep 150
+	mousemove 1310, 130
+	sleep 150
+	click left, Up
+	sleep 1000
+
+	CommissaryBuy("BlackNucleus.png","600","110","1910","715","BlackNucleus", 30)
+	click 55, 55 ;<
+	sleep 1000
+	send {escape}
+}
+
 Tooltip, Daily Tasks complete,0,0
 
+;Depreciated ======================================================================
 
 ; send {Alt down}
 ; sleep 100

@@ -1,5 +1,5 @@
 ﻿	Tooltip, Weapon 2,0,0 ;Weapon 2
-	Loop, 15
+	Loop, 20
 	{
 		send e
 		sleep 100
@@ -12,7 +12,7 @@
 	sleep 500
 	
 	Tooltip, Weapon 1,0,0 ;Weapon 1
-	Loop, 15
+	Loop, 20
 	{
 	send q
 	sleep 100
@@ -38,10 +38,11 @@
 	Loop, 4
 	{
 		send r1{Space}
-		sleep 900
+		sleep 500
 		click left, down
 		sleep 100
 		click left, up
+		sleep 400
 	}
 	
 	Tooltip, Weapon 3,0,0

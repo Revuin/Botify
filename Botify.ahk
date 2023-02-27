@@ -44,7 +44,7 @@ Gui Add, Text, x320 y182 w25 h17 +0x200 , F3
 Gui Font
 Gui Add, Picture, x72 y15 w251 h89, K:\My Drive\ToF\Gumroad\Botify logo.png
 Gui Font, s10
-Gui Add, DropDownList, x117 y136 w173 vDlist1, Attack Loop|Boss Chest|Daily Tasks||Critical Abyss|Dimensional Trials|Dream Machine|Frontier Clash|Event|JO Carnival Party|JO Sadness Valley|Join game and Auto battle|Left-click Turbo|Raid|Sequential Phantasm
+Gui Add, DropDownList, x117 y136 w173 vDlist1, 2-3 Star Gates|Attack Loop|Boss Chest|Daily Tasks||Critical Abyss|Dimensional Trials|Dream Machine|Frontier Clash|Event|JO Carnival Party|JO Sadness Valley|Join game and Auto battle|Left-click| Turbo|Raid|Sequential Phantasm|Void Rifts
 Gui Font
 Gui Font, s11 Bold
 Gui Add, Text, x153 y112 w101 h23 +0x200 , Select a bot
@@ -76,7 +76,11 @@ Button?:
 	GuiControlGet, Dlist1
 	; MsgBox %Dlist1%
 	
-	If (Dlist1 = "Attack Loop")
+	If (Dlist1 = "2-3 Star Gates")
+	{
+		MsgBox, Joins 2-3 star nanofiber/booster gates and enables auto-battle. `n`n1. Open chat`n2. Go to the recruit section`n3. Run bot
+	}
+	Else if (Dlist1 = "Attack Loop")
 	{
 		MsgBox, AFK farm nearby enemies using left clicks, skills (key 1)`, and relics (key 2 & 3). `n`nUseful for raids and world bosses
 	}
@@ -131,6 +135,10 @@ Button?:
 	Else if (Dlist1 = "Left-click Turbo")
 	{
 		MsgBox, Holding middle click will spam left click
+	}
+	Else if (Dlist1 = "Void Rifts")
+	{
+		MsgBox, Plays Void Rifts. Will keep trying to teleport to boss room and then wait 60 seconds to fight boss
 	}
 return
 
@@ -230,7 +238,14 @@ ButtonStart▶:
 	SetTimer, Focus, 5000, On
 
 	GuiControlGet, Dlist1
-	If (Dlist1 = "Attack Loop")
+	If (Dlist1 = "")
+	{
+	}
+	; If (Dlist1 = "2-3 Star Gates")
+	; {
+		; #Include scripts/2-3 Star Gates.ahk
+	; }
+	Else if (Dlist1 = "Attack Loop")
 	{
 		Loop
 		{
@@ -251,7 +266,10 @@ ButtonStart▶:
 	}
 	Else if (Dlist1 = "Dimensional Trials")
 	{
-		#Include scripts/Dimensional Trials.ahk
+		Loop
+		{
+			#Include scripts/Dimensional Trials.ahk
+		}
 	}
 	Else if (Dlist1 = "Dream Machine")
 	{
@@ -263,11 +281,17 @@ ButtonStart▶:
 	}
 	Else if (Dlist1 = "Frontier Clash")
 	{
-		#Include scripts/Frontier Clash.ahk
+		Loop
+		{
+			#Include scripts/Frontier Clash.ahk
+		}
 	}
 	Else if (Dlist1 = "JO Carnival Party")
 	{
-		#Include scripts/JO Carnival Party.ahk
+		Loop
+		{
+			#Include scripts/JO Carnival Party.ahk
+		}
 	}
 	Else if (Dlist1 = "JO Sadness Valley")
 	{
@@ -284,15 +308,25 @@ ButtonStart▶:
 	}
 	Else if (Dlist1 = "RAID")
 	{
-		#Include scripts/RAID.ahk
+		Loop, 3
+		{
+			#Include scripts/RAID.ahk
+		}
 	}
 	Else if (Dlist1 = "Sequential Phantasm")
 	{
-		#Include scripts/Sequential Phantasm.ahk
+		Loop, 3
+		{
+			#Include scripts/Sequential Phantasm.ahk
+		}
 	}
+	; Else if (Dlist1 = "Void Rifts")
+	; {
+		; #Include scripts/Void Rifts.ahk
+	; }
 	Else
 	{
-		MsgBox, Error, invalid selection
+		MsgBox, Error, Selection not available
 	}
 return
 
@@ -390,3 +424,69 @@ Focus:
 		click 940, 530 ;Login
 	}
 return
+
+
+CommissaryBuy(file,x1,y1,x2,y2,object,timeout)
+{
+	global FoundX, FoundY
+	Loop
+	{
+		ImageSearch, FoundX, FoundY, %x1%, %y1%, %x2%, %y2%, *50 img/%file%
+		If (ErrorLevel = 0)
+		{
+			ToolTip, %object% Found, 0,0
+			click %FoundX%, %FoundY%
+			sleep 1000
+			click 1410, 990 ;Right arrow for max items
+			sleep 500
+			Loop
+			{
+				ImageSearch, FoundX, FoundY, 1520, 845, 1915, 1035, *30 img/Purchase_Weekly.png
+				If (ErrorLevel=0)
+				{
+					Tooltip, Found Purchase,0,0
+					click %FoundX%, %FoundY% ;Purchase
+					break
+				}
+				Else
+				{
+					Tooltip, Purchase_Weekly not found,0,0
+					sleep 500
+				}
+			}
+			Loop, 5
+			{
+				ImageSearch, FoundX, FoundY, 1105, 520, 1415, 630, *30 img/OK.png
+				If (ErrorLevel=0)
+				{
+					Tooltip, Found OK,0,0
+					click %FoundX%, %FoundY% ;OK
+					sleep 1000
+					break, 2
+				}
+				Else
+				{
+					Tooltip, OK not found,0,0
+					sleep 500
+				}
+			}
+			break
+		}
+		Else
+		{
+			If (n<timeout)
+			{
+				sleep 1000
+				n++
+				ToolTip, Searching for %object% %n%/%timeout%, 0,0
+			}
+			Else
+			{
+				n=0
+				Msgbox, %object% not found, 0,0
+				break
+			}
+		}
+	}
+	return FoundX, FoundY, ErrorLevel
+}
