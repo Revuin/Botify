@@ -25,7 +25,7 @@ Collection of bots for Tower of Fantasy. These are hack-free so they are much sa
     - Building
     - Appointed Research (Core only) (Will be updated to the newest equipment instead in the future)
     - Mailbox
-    - Commissary
+    - Commissary (Untested, buys weekly items from the commissary if it's Monday)
 - Dimensional Trials
   - Plays Dimensional Trials and enables auto-battle for weapon materials
 - Dream Machine
