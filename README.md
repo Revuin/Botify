@@ -21,8 +21,8 @@ Collection of bots for Tower of Fantasy. These are hack-free so they are much sa
     - Supply Run
     - Rewards
     - Battle Pass
-    - Crew
-    - Building
+    - Crew (Submit/Accept crew missions and donate)
+    - Building (Claim building materials)
     - Appointed Research (Core only) (Will be updated to the newest equipment instead in the future)
     - Mailbox
     - Commissary (Untested, buys weekly items from the commissary if it's Monday)
