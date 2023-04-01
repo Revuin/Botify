@@ -27,7 +27,7 @@ Loop {
 	click 240, 585 ;Challenge
 	sleep 1000
 	Loop {
-		Tooltip, Searching for Frontier Clash,0,0
+		Tooltip, Searching for Critical Abyss,0,0
 		ImageSearch, FoundX, FoundY, 350, 180, 1655, 330, *50 img/TheCriticalAbyss.png
 		If (ErrorLevel = 0) {
 			MouseMove %FoundX%, %FoundY%
@@ -53,6 +53,8 @@ Loop {
 				sleep 150
 			}
 		}
+		mousemove 1005, 150 ;Blank space
+		sleep 1000
 	}
 	
 	Tooltip, Searching for Go,0,0
@@ -106,7 +108,6 @@ Loop {
 	Move:
 	Tooltip, Moving,0,0
 	dead=0
-	vehicle = 0
 	SetTimer, endCheck, 2000, On
 	send r
 	SendInput, {w DownR}

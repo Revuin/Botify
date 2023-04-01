@@ -1,14 +1,4 @@
-﻿;V7 Rotate camera less
-;	Extra Rewards text detection
-;	Extra boss stage detection
-;V8 Use Selfie mode to align camera
-;V9 Detect ground after falling at start
-;V10 Use unstuck at start
-;V11 Dash off at start and don't try to dash off at end
-;V12 Use middle click to reset camera instead
-;V13 Use image detection for unstuck and Rewards end screen
-
-usePot = 0
+﻿usePot = 0
 
 gtfo = 0
 battle = 0
@@ -28,19 +18,42 @@ Loop {
 	Else
 		sleep 500
 }
+
+send b ;Use Joint Supply chips
+sleep 6000
+Loop, 5
+{
+	ImageSearch, FoundX, FoundY, 1150, 100, 1765, 725, *30 img/JointSupplyChip.png
+	If (ErrorLevel=0)
+	{
+		click %FoundX%, %FoundY% ;Joint Supply Chip
+		Search("Use_Backpack.png","1250","125","1365","180","Use (Backpack)", 30)
+		sleep 500
+		click %FoundX%, %FoundY% ;Use (Backpack)
+		sleep 1000
+	}
+	Else
+	{
+		click 1580, 780 ; Next page
+		sleep 1000
+	}
+}
+click 55, 55 ;<
+sleep 2000
+
 send {Alt down}
 sleep 100
 send 3
 sleep 100
 send {Alt Up} ;DUAL SWORDS
 sleep 1500
-click 255, 470 ;Select
+click 105, 515	 ;Select
 sleep 1000
-click 510, 825 ;Go
+click 545, 500 ; Joint Operation
 sleep 1000
 click 250, 965 ;Carnival Party
-sleep 1000
-click 195, 420 ;Difficulty 3
+sleep 2000
+click 195, 540 ;Difficulty 4
 sleep 1000
 
 Tooltip, Searching for Go,0,0
@@ -175,10 +188,26 @@ SendInput, {w Up}
 Loop {
 	#IncludeAgain scripts/Attack Loop.ahk
 	
-	ImageSearch, FoundX, FoundY, 680, 680, 800, 710, *5 *Transf24fff img/Rewards_JO.png
+	ImageSearch, FoundX, FoundY, 680, 680, 810, 715, *10 *Transf24fff img/Rewards_JO.png
 	If (Errorlevel = 0)
 	{
 		Tooltip, Found Reward End,0,0
+		ImageSearch, FoundX, FoundY, 770, 490, 900, 545, *20 img/Dead.png
+		If (ErrorLevel=0)
+		{
+			Tooltip, Dead,0,0
+			sleep 10000
+			click 1595, 905
+			sleep 2000
+		}
+		ImageSearch, FoundX, FoundY, 770, 490, 900, 545, *20 img/Dead_2.png
+		If (ErrorLevel=0)
+		{
+			Tooltip, Dead_2,0,0
+			sleep 10000
+			click 1595, 905
+			sleep 2000
+		}
 		break
 	}
 	Else
@@ -186,11 +215,34 @@ Loop {
 		Tooltip, Reward End not found,0,0
 		sleep 500
 	}
+	
+	ImageSearch, FoundX, FoundY, 770, 490, 900, 545, *20 img/Dead.png
+	If (ErrorLevel=0)
+	{
+		Tooltip, Dead,0,0
+		sleep 10000
+		click 1595, 905
+		sleep 2000
+		sendInput {W DownR}
+		sleep 3000
+		sendInput {W Up}
+	}
+	ImageSearch, FoundX, FoundY, 770, 490, 900, 545, *20 img/Dead_2.png
+	If (ErrorLevel=0)
+	{
+		Tooltip, Dead_2,0,0
+		sleep 10000
+		click 1595, 905
+		sleep 2000
+		sendInput {W DownR}
+		sleep 3000
+		sendInput {W Up}
+	}
 }
 click 980, 1000 ;Blank
 sleep 1000
 click 980, 1000 ;Blank
-sleep 500
+sleep 1000
 Tooltip, Unstuck,0,0 ;Attempt #1 ===========================================
 send {escape}
 sleep 2000
@@ -204,7 +256,7 @@ send {escape}
 send {w DownR}
 sleep 6000
 send {a DownR}
-sleep 150
+sleep 200
 send {a Up}
 sleep 2000
 send {w up}
@@ -234,7 +286,7 @@ Loop, 5
 
 If (foundChest = 0)
 {
-	Tooltip, Chest not found - trying again,0,0 ;Attempts #2 ===============================================
+	Tooltip, Chest not found - trying again,0,0 ;Attempt #2 ===============================================
 	send {escape}
 	sleep 2000
 	click 1665, 630 ;Settings
@@ -247,9 +299,9 @@ If (foundChest = 0)
 	send {w DownR}
 	sleep 5000
 	send {d DownR}
-	sleep 200
+	sleep 700
 	send {d Up}
-	sleep 1500
+	sleep 2000
 	send {w up}
 	sleep 2000
 	Loop, 3
@@ -267,8 +319,11 @@ If (foundChest = 0)
 		ImageSearch, FoundX, FoundY, 1105, 520, 1415, 630, *30 img/Ok.png
 		If (ErrorLevel=0)
 		{
+			Tooltip, Found chest,0,0
 			click %FoundX%, %FoundY% ;OK
+			sleep 3000
 			foundChest = 1
+			break
 		}
 	}
 	

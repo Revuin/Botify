@@ -42,9 +42,9 @@ Gui Font
 Gui Font, s12
 Gui Add, Text, x320 y182 w25 h17 +0x200 , F3
 Gui Font
-Gui Add, Picture, x72 y15 w251 h89, K:\My Drive\ToF\Gumroad\Botify logo.png
+Gui Add, Picture, x72 y15 w251 h89, Botify logo.png
 Gui Font, s10
-Gui Add, DropDownList, x117 y136 w173 vDlist1, 2-3 Star Gates|Attack Loop|Boss Chest|Daily Tasks||Critical Abyss|Dimensional Trials|Dream Machine|Frontier Clash|Event|JO Carnival Party|JO Sadness Valley|Join game and Auto battle|Left-click| Turbo|Raid|Sequential Phantasm|Void Rifts
+Gui Add, DropDownList, x117 y136 w173 vDlist1, 2-3 Star Gates|Attack Loop|Boss Chest|Daily Tasks||Critical Abyss|Dimensional Trials|Dream Machine|Frontier Clash|Frontier Clash Hard|JO Carnival Party|JO Sadness Valley|Join game and Auto battle|Left-click Turbo|Raid|Sequential Phantasm|Void Abyss|Void Rifts|Debug
 Gui Font
 Gui Font, s11 Bold
 Gui Add, Text, x153 y112 w101 h23 +0x200 , Select a bot
@@ -104,13 +104,13 @@ Button?:
 	{
 		MsgBox, Kills the 2 named enemies in Aesperia repeatedly`n`nRecommended to equip Samir to R and Cocoritter to Q
 	}
-	Else if (Dlist1 = "Event")
-	{
-		MsgBox, Plays the Half-Anniversary Event. Recommended to run this overnight because it'll get last place each time`, which rewards only 100 tokens
-	}
 	Else if (Dlist1 = "Frontier Clash")
 	{
 		MsgBox, Plays Frontier Clash and enables auto-battle for exp`, support points`, and vehicle parts
+	}
+	Else if (Dlist1 = "Frontier Clash Hard")
+	{
+		MsgBox, Plays Frontier Clash Hard and enables auto-battle for gold equipment
 	}
 	Else if (Dlist1 = "JO Carnival Party")
 	{
@@ -136,10 +136,15 @@ Button?:
 	{
 		MsgBox, Holding middle click will spam left click
 	}
+	Else if (Dlist1 = "Void Abyss")
+	{
+		MsgBox, Plays Void Abyss. Will keep trying to teleport to boss room and then wait 60 seconds to fight boss
+	}
 	Else if (Dlist1 = "Void Rifts")
 	{
 		MsgBox, Plays Void Rifts. Will keep trying to teleport to boss room and then wait 60 seconds to fight boss
 	}
+
 return
 
 F2::
@@ -185,50 +190,7 @@ ButtonStart▶:
 	GuiControl, Enable, Stop   ⏹
 	GuiControl, Enable, Pause   ⏸
 	
-	IfWinNotExist ahk_class UnrealWindow ;Start game if it's not open
-	{	
-		Tooltip, Starting game,0,0
-		RegRead, reg1, HKEY_CURRENT_USER\SOFTWARE\Classes\toflauncher\DefaultIcon
-		Run %reg1%
-		Search("Launch.png","15","725","375","850","Launch button", 200)
-		sleep 1000
-		Search("Launch.png","15","725","375","850","Launch button", 200)
-		click %FoundX%, %FoundY%
-		Search("CloseX.png","1690","170","1790","270","Close Button", 300)
-		click %FoundX%, %FoundY%
-		sleep 500
-		click 940, 530 ;Login
-		Loading_Launch:
-		Loop {
-				Tooltip, Searching for Loading screen,0,0
-					ImageSearch, FoundX, FoundY, 460, 970, 1390, 1080, *5 img/Loading.png
-					If (ErrorLevel=0) {
-						Tooltip, Loading screen found,0,0
-						break
-					}
-					Else {
-						sleep 500
-					}
-		}
-		Loop {
-			ImageSearch, FoundX, FoundY, 460, 970, 1390, 1080, *5 img/Loading.png
-				If (ErrorLevel=0) {
-					Tooltip, Loading screen found,0,0
-					sleep 500
-				}
-				Else {
-					Tooltip, Loading screen not found,0,0
-					sleep 500
-					ImageSearch, FoundX, FoundY, 460, 970, 1390, 1080, *5 img/Loading.png
-						If (ErrorLevel=0) {
-							sleep 500
-							goto Loading_Launch
-							}
-						Else
-							break
-				}
-		}
-	}
+#Include scripts/other/Launch Game.ahk
 	
 	IfWinNotActive ("ahk_class UnrealWindow") ;Focus on game
 	{
@@ -275,16 +237,16 @@ ButtonStart▶:
 	{
 		#Include scripts/Dream Machine.ahk
 	}
-	Else if (Dlist1 = "Event")
-	{
-		#Include scripts/Event.ahk
-	}
 	Else if (Dlist1 = "Frontier Clash")
 	{
 		Loop
 		{
 			#Include scripts/Frontier Clash.ahk
 		}
+	}
+	Else if (Dlist1 = "Frontier Clash Hard")
+	{
+		#Include scripts/Frontier Clash Hard.ahk
 	}
 	Else if (Dlist1 = "JO Carnival Party")
 	{
@@ -308,6 +270,7 @@ ButtonStart▶:
 	}
 	Else if (Dlist1 = "RAID")
 	{
+		raid = 2
 		Loop, 3
 		{
 			#Include scripts/RAID.ahk
@@ -317,13 +280,33 @@ ButtonStart▶:
 	{
 		Loop, 3
 		{
-			#Include scripts/Sequential Phantasm.ahk
+			stage = 1
+			Loop,4
+			{
+				#Include scripts/Sequential Phantasm.ahk
+			}
+		}
+		#Include scripts/Other/Sequential Phantasm Claim Rewards.ahk
+		Tooltip, Sequential Phantasm complete,0,0
+	}
+	Else if (Dlist1 = "Void Abyss")
+	{
+		Loop
+		{
+			#Include scripts/Void Abyss.ahk
 		}
 	}
-	; Else if (Dlist1 = "Void Rifts")
-	; {
-		; #Include scripts/Void Rifts.ahk
-	; }
+	Else if (Dlist1 = "Void Rifts")
+	{
+		Loop
+		{
+			#Include scripts/Void Rifts.ahk
+		}
+	}
+	Else if (Dlist1 = "Debug")
+	{
+			#Include scripts/Other/Launch Game.ahk
+	}
 	Else
 	{
 		MsgBox, Error, Selection not available
@@ -382,6 +365,12 @@ Focus:
 		WinActivate ahk_class UnrealWindow
 	}
 	
+	IfWinExist, ahk_class #32770 ;Press OK if crash error message appears
+	{	
+		WinActivate ahk_class #32770
+		send {Enter}
+	}
+	
 	PixelGetColor, p1, 577, 466 ;Check for disconnected message
 	PixelGetColor, p2, 594, 463
 	PixelGetColor, p3, 825, 469
@@ -402,27 +391,8 @@ Focus:
 			click %FoundX%, %FoundY%
 		}
 	}
-
-	IfWinExist, ahk_class #32770 ;Press OK if crash error message appears
-	{	
-		WinActivate ahk_class #32770
-		send {Enter}
-	}
-
-	IfWinNotExist ahk_class UnrealWindow ;Start game again if it's closed
-	{	
-		Tooltip, Game crashed,0,0
-		RegRead, reg1, HKEY_CURRENT_USER\SOFTWARE\Classes\toflauncher\DefaultIcon
-		Run %reg1%
-		Search("Launch.png","15","725","375","850","Launch button", 200)
-		sleep 1000
-		Search("Launch.png","15","725","375","850","Launch button", 200)
-		click %FoundX%, %FoundY%
-		Search("CloseX.png","1690","170","1790","270","Close Button", 300)
-		click %FoundX%, %FoundY%
-		sleep 500
-		click 940, 530 ;Login
-	}
+	
+	#IncludeAgain scripts/other/Launch Game.ahk ;Launch game if it's closed
 return
 
 
@@ -439,21 +409,7 @@ CommissaryBuy(file,x1,y1,x2,y2,object,timeout)
 			sleep 1000
 			click 1410, 990 ;Right arrow for max items
 			sleep 500
-			Loop
-			{
-				ImageSearch, FoundX, FoundY, 1520, 845, 1915, 1035, *30 img/Purchase_Weekly.png
-				If (ErrorLevel=0)
-				{
-					Tooltip, Found Purchase,0,0
-					click %FoundX%, %FoundY% ;Purchase
-					break
-				}
-				Else
-				{
-					Tooltip, Purchase_Weekly not found,0,0
-					sleep 500
-				}
-			}
+			click 1740, 950 ;Purchase
 			Loop, 5
 			{
 				ImageSearch, FoundX, FoundY, 1105, 520, 1415, 630, *30 img/OK.png
@@ -490,3 +446,6 @@ CommissaryBuy(file,x1,y1,x2,y2,object,timeout)
 	}
 	return FoundX, FoundY, ErrorLevel
 }
+
+
+F4::Reload

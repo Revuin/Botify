@@ -1,4 +1,5 @@
-﻿AppointedResearch = 1
+﻿AppointedResearch = 0
+
 
 Loop, 10 ;Check for Reward Recovery
 { 
@@ -57,6 +58,58 @@ click 1190, 830 ;Purchase
 sleep 2000
 click 980, 1000 ;Blank
 sleep 2000
+
+If A_DDDD = Monday
+{
+	click 1090, 930, Left, Down ;Scroll down
+	sleep 150
+	mousemove 1090, 700
+	sleep 150
+	mousemove 1090, 500
+	sleep 150
+	mousemove 1090, 300
+	sleep 150
+	mousemove 1090, 210
+	sleep 150
+	click, left, up
+	sleep 1000
+
+	Search("BoosterModule_Hot.png","255","90","1860","980","BoosterModule_Hot", 90)
+	sleep 500
+	click %FoundX%, %FoundY% ;BoosterModule_Hot
+	sleep 2000
+	click 1440, 660 ;Right arrow for max items
+	sleep 1000
+	click 1190, 830 ;Purchase
+	sleep 2000
+	click 980, 1000 ;Blank
+	sleep 2000
+	
+	click 1090, 930, Left, Down ;Scroll down
+	sleep 150
+	mousemove 1090, 700
+	sleep 150
+	mousemove 1090, 500
+	sleep 150
+	mousemove 1090, 300
+	sleep 150
+	mousemove 1090, 210
+	sleep 150
+	click, left, up
+	sleep 1000
+
+	Search("AdvancementModule_Hot.png","255","90","1860","980","AdvancementModule_Hot", 90)
+	sleep 500
+	click %FoundX%, %FoundY% ;AdvancementModule_Hot
+	sleep 2000
+	click 1440, 660 ;Right arrow for max items
+	sleep 1000
+	click 1190, 830 ;Purchase
+	sleep 2000
+	click 980, 1000 ;Blank
+	sleep 2000
+}
+
 click 55, 55 ;<
 sleep 2000
 
@@ -69,7 +122,7 @@ send {Alt Up} ;DUAL SWORDS
 sleep 2000
 
 Loop, 20 { ;Claim weekly activities
-ImageSearch, FoundX, FoundY, 720, 450, 985, 560, *50 img/Claim_Weekly.png
+ImageSearch, FoundX, FoundY, 790, 390, 1815, 885, *100 img/Claim_Weekly.png
 	If ErrorLevel = 0
 	{
 		ToolTip, Found X, 0,0
@@ -83,7 +136,7 @@ ImageSearch, FoundX, FoundY, 720, 450, 985, 560, *50 img/Claim_Weekly.png
 	}
 }
 
-If (A_DDDD = Sunday)
+If A_DDDD = Sunday
 {
 	Loop, 20 {
 		click 860, 500 ;Claim (Individual Weekly)
@@ -115,12 +168,11 @@ If (A_DDDD = Sunday)
 	sleep 2000
 }
 
-click 240, 350 ;Recommended
+click 100, 360 ;Recommended
 sleep 2000
 
-Search("Mia.png","345","190","1675","340","Mia's Kitchen", 30) ; Mia's Kitchen
-MouseMove %FoundX%, %FoundY%
-click 110, 570, relative
+Search("Mia.png","1195","870","1570","1025","Mia's Kitchen", 30) ; Mia's Kitchen
+click %FoundX%, %FoundY%
 sleep 2000
 Loop, 60 {
 	click 1710, 915 ;Taste
@@ -129,9 +181,8 @@ Loop, 60 {
 click 55, 55 ;<
 sleep 2000
 
-Search("DailyBounty.png","355","180","1655","330","Daily Bounty", 30) ; Daily Bounty
-MouseMove %FoundX%, %FoundY%
-click 110, 570, relative
+Search("DailyBounty.png","215","815","525","965","Daily Bounty", 30) ; Daily Bounty
+click %FoundX%, %FoundY%
 sleep 3000
 
 ImageSearch, FoundX, FoundY, 1175, 780, 1530, 920, *30 img/Vera_disabled.png
@@ -159,6 +210,7 @@ Loop, 8 {
 	Tooltip, Submit not found,0,0
 	sleep 1000
 }
+
 click 555, 905 ; Track Down
 sleep 1000
 ; click 55, 55 ;<
@@ -258,21 +310,26 @@ click %FoundX%, %FoundY% ;Pass
 sleep 3000
 
 n = 0
-Loop {
-ImageSearch, FoundX, FoundY, 1390, 905, 1680, 990, *30 img/ClaimAll.png
-If (Errorlevel = 0) {
-	Tooltip, Found Claim All,0,0
-	click %FoundX%, %FoundY% ;Claim All
-	break
-}
-Else {
-	Tooltip, Claim All not found,0,0
-	If (n >= 5)
-		send {escape}
-		n = 0
+Loop 
+{
+	ImageSearch, FoundX, FoundY, 1390, 905, 1680, 990, *30 img/ClaimAll.png
+	If (Errorlevel = 0) 
+	{
+		Tooltip, Found Claim All,0,0
+		click %FoundX%, %FoundY% ;Claim All
+		break
 	}
-	n++
-	sleep 1000
+	Else 
+	{
+		Tooltip, Claim All not found,0,0
+		If (n >= 5) && (n < 8)
+		{
+			send {escape}
+			n = 10
+		}
+		n++
+		sleep 1000
+	}
 }	
 sleep 1000
 send {escape}
@@ -363,109 +420,13 @@ sleep 2000
 click 1225, 260 ;Casual
 sleep 2000
 click 1140, 570 ;Building
-
-Loop
-{
-	ImageSearch, FoundX, FoundY, 1340, 785, 1575, 905, *30 img/Go_Building.png
-	If (ErrorLevel=0)
-	{
-		Tooltip, Go_Building Found,0,0
-		click %FoundX%, %FoundY% ;Go
-		break
-	}
-	
-	ImageSearch, FoundX, FoundY, 1340, 785, 1575, 905, *30 img/Go_Building_2.png
-	If (ErrorLevel=0)
-	{
-		Tooltip, Go_Building_2 Found,0,0
-		click %FoundX%, %FoundY% ;Go
-		break
-	}
-	sleep 500
-}
-
-
-
-Search("OK.png","1105","520","1415","630","OK", 30)
-click %FoundX%, %FoundY% ;OK
-
-Loop {
-		Tooltip, Searching for Loading screen,0,0
-		ImageSearch, FoundX, FoundY, 460, 970, 1390, 1080, *5 img/Loading.png
-		If (ErrorLevel=0) {
-			Tooltip, Loading screen found,0,0
-			break
-		}
-		Else {
-			sleep 500
-		}
-}
-Loading_Building:
-Loop {
-	ImageSearch, FoundX, FoundY, 460, 970, 1390, 1080, *5 img/Loading.png
-		If (ErrorLevel=0) {
-			Tooltip, Loading screen found,0,0
-			sleep 500
-		}
-		Else {
-			Tooltip, Loading screen not found,0,0
-			sleep 500
-			ImageSearch, FoundX, FoundY, 460, 970, 1390, 1080, *5 img/Loading.png
-				If (ErrorLevel=0) {
-					sleep 500
-					goto Loading_Building
-				}
-				Else
-					break
-		}
-}
-sleep 5000
-send {Escape}
 sleep 2000
-click 1225, 260 ;Casual
+click 90, 1015 ;Claim
+sleep 1000
+click 55, 55 ;<
 sleep 2000
-click 1140, 570 ;Building
-sleep 1000
-Search("Claim_Building.png","315","610","510","675","Claim_Building", 30)
-click %FoundX%, %FoundY% ;Claim
-sleep 1000
 send {escape}
-sleep 1000
-click 270, 70 ;Exit Icon
-Search("OK.png","1105","520","1415","630","OK", 30)
-click %FoundX%, %FoundY% ;OK
-
-Loop {
-		Tooltip, Searching for Loading screen,0,0
-			ImageSearch, FoundX, FoundY, 460, 970, 1390, 1080, *5 img/Loading.png
-			If (ErrorLevel=0) {
-				Tooltip, Loading screen found,0,0
-				break
-			}
-			Else {
-				sleep 500
-			}
-}
-Loading_Building2:
-Loop {
-	ImageSearch, FoundX, FoundY, 460, 970, 1390, 1080, *5 img/Loading.png
-	If (ErrorLevel=0) {
-		Tooltip, Loading screen found,0,0
-		sleep 500
-	}
-	Else {
-		Tooltip, Loading screen not found,0,0
-		sleep 500
-		ImageSearch, FoundX, FoundY, 460, 970, 1390, 1080, *5 img/Loading.png
-			If (ErrorLevel=0) {
-				sleep 500
-				goto Loading_Building2
-			}
-			Else
-				break
-		}
-}
-sleep 5000
+sleep 2000
 
 ;Appointed Research =====================================================================================
 If (AppointedResearch = 1)
@@ -513,10 +474,10 @@ If (AppointedResearch = 1)
 send {escape}
 sleep 2000
 click 1320, 410 ;Friends
-Search("Mailbox.png","1605","50","1755","110","Mailbox", 30)
+Search("Mailbox.png","1750","420","1880","510","Mailbox", 30)
 sleep 500
 click %FoundX%, %FoundY% ;Mailbox
-Search("ClaimAll_Mailbox.png","40","905","290","980","ClaimAll_Mailbox", 30)
+Search("ClaimAll_Mailbox.png","40","905","290","1020","ClaimAll_Mailbox", 30)
 sleep 500
 click %FoundX%, %FoundY% ;Claim All
 sleep 2000
@@ -525,9 +486,10 @@ sleep 1000
 click 55, 55 ;<
 sleep 1000
 send {escape}
+sleep 2000
 
 ;Commissary Weekly =============================================================
-If (A_DDDD = Monday)
+If A_DDDD = Tuesday
 {
 	send {escape}
 	sleep 2000

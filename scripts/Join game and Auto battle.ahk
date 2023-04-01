@@ -1,12 +1,12 @@
 ﻿Loop {
 	Loop {
 		Tooltip, Searching for Approve or Loading screen,0,0
-		ImageSearch, FoundX, FoundY, 885, 445, 1480, 800, *50 Approve.png
+		ImageSearch, FoundX, FoundY, 885, 445, 1480, 800, *50 img/Approve.png
 			If (ErrorLevel=0) {
 				Tooltip, Found Approve,0,0
 				click %FoundX%, %FoundY%
 				sleep 2000
-				ImageSearch, FoundX, FoundY, 1035, 485, 1440, 640, *50 Purchase.png
+				ImageSearch, FoundX, FoundY, 1035, 485, 1440, 640, *50 img/Purchase.png
 				If (ErrorLevel=0) {
 					Tooltip, Low vitality,0,0
 					lowVit = 1
@@ -24,7 +24,7 @@
 				sleep 500
 			}
 
-			ImageSearch, FoundX, FoundY, 460, 970, 1390, 1080, *5 Loading.png
+			ImageSearch, FoundX, FoundY, 460, 970, 1390, 1080, *5 img/Loading.png
 			If (ErrorLevel=0) {
 				Tooltip, Loading screen found,0,0
 				break
@@ -34,7 +34,7 @@
 			}
 	}
 	Loop {
-		ImageSearch, FoundX, FoundY, 460, 970, 1390, 1080, *5 Loading.png
+		ImageSearch, FoundX, FoundY, 460, 970, 1390, 1080, *5 img/Loading.png
 			If (ErrorLevel=0) {
 				Tooltip, Loading screen found,0,0
 				sleep 500
