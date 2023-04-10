@@ -55,6 +55,7 @@ https://www.autohotkey.com/download/ahk-install.exe
 2. Make sure the screen resolution is 1920 x 1080 and the game is fullscreen (Other resolutions are not supported at this time)
 3. Download and extract the latest release of this bot 
 4. Run Botify.ahk
+(Optional) The Full AFK.ahk script runs a set of bots depending on what day of the week it is. (E.g. Claim daily rewards, then do Joint Operation, then do Frontier Clash)
 
 
 If you find issues or have suggestions, feel free to add me on Discord Revuin#5095 or open an issue in GitHub
