@@ -21,7 +21,7 @@ Loop {
 
 send b ;Use Joint Supply chips
 sleep 6000
-Loop, 5
+Loop, 2
 {
 	ImageSearch, FoundX, FoundY, 1150, 100, 1765, 725, *30 img/JointSupplyChip.png
 	If (ErrorLevel=0)
@@ -185,29 +185,14 @@ SendInput, {w DownR}
 sleep 7000
 SendInput, {w Up}
 
-Loop {
+Loop 
+{
 	#IncludeAgain scripts/Attack Loop.ahk
 	
-	ImageSearch, FoundX, FoundY, 680, 680, 810, 715, *10 *Transf24fff img/Rewards_JO.png
+	ImageSearch, FoundX, FoundY, 835, 920, 1020, 1010, *50 img/TapAnywhere.png
 	If (Errorlevel = 0)
 	{
 		Tooltip, Found Reward End,0,0
-		ImageSearch, FoundX, FoundY, 770, 490, 900, 545, *20 img/Dead.png
-		If (ErrorLevel=0)
-		{
-			Tooltip, Dead,0,0
-			sleep 10000
-			click 1595, 905
-			sleep 2000
-		}
-		ImageSearch, FoundX, FoundY, 770, 490, 900, 545, *20 img/Dead_2.png
-		If (ErrorLevel=0)
-		{
-			Tooltip, Dead_2,0,0
-			sleep 10000
-			click 1595, 905
-			sleep 2000
-		}
 		break
 	}
 	Else
@@ -216,33 +201,50 @@ Loop {
 		sleep 500
 	}
 	
-	ImageSearch, FoundX, FoundY, 770, 490, 900, 545, *20 img/Dead.png
+	ImageSearch, FoundX, FoundY, 760, 380, 855, 450, *20 img/Dead.png
 	If (ErrorLevel=0)
 	{
 		Tooltip, Dead,0,0
 		sleep 10000
-		click 1595, 905
+		click 1525, 905
 		sleep 2000
 		sendInput {W DownR}
 		sleep 3000
 		sendInput {W Up}
 	}
-	ImageSearch, FoundX, FoundY, 770, 490, 900, 545, *20 img/Dead_2.png
+	ImageSearch, FoundX, FoundY, 760, 380, 855, 450, *20 img/Dead_2.png
 	If (ErrorLevel=0)
 	{
 		Tooltip, Dead_2,0,0
 		sleep 10000
-		click 1595, 905
+		click 1525, 905
 		sleep 2000
 		sendInput {W DownR}
 		sleep 3000
 		sendInput {W Up}
 	}
 }
+
 click 980, 1000 ;Blank
 sleep 1000
 click 980, 1000 ;Blank
 sleep 1000
+ImageSearch, FoundX, FoundY, 760, 380, 855, 450, *20 img/Dead.png
+If (ErrorLevel=0)
+{
+	Tooltip, Dead,0,0
+	sleep 10000
+	click 1525, 905
+	sleep 2000
+}
+ImageSearch, FoundX, FoundY, 760, 380, 855, 450, *20 img/Dead_2.png
+If (ErrorLevel=0)
+{
+	Tooltip, Dead_2,0,0
+	sleep 10000
+	click 1525, 905
+	sleep 2000
+}
 Tooltip, Unstuck,0,0 ;Attempt #1 ===========================================
 send {escape}
 sleep 2000
@@ -256,9 +258,9 @@ send {escape}
 send {w DownR}
 sleep 6000
 send {a DownR}
-sleep 200
+sleep 300
 send {a Up}
-sleep 2000
+sleep 1500
 send {w up}
 sleep 1500
 Loop, 3
@@ -299,7 +301,7 @@ If (foundChest = 0)
 	send {w DownR}
 	sleep 5000
 	send {d DownR}
-	sleep 700
+	sleep 800
 	send {d Up}
 	sleep 2000
 	send {w up}

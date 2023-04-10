@@ -44,7 +44,7 @@ Gui Add, Text, x320 y182 w25 h17 +0x200 , F3
 Gui Font
 Gui Add, Picture, x72 y15 w251 h89, Botify logo.png
 Gui Font, s10
-Gui Add, DropDownList, x117 y136 w173 vDlist1, 2-3 Star Gates|Attack Loop|Boss Chest|Daily Tasks||Critical Abyss|Dimensional Trials|Dream Machine|Frontier Clash|Frontier Clash Hard|JO Carnival Party|JO Sadness Valley|Join game and Auto battle|Left-click Turbo|Raid|Sequential Phantasm|Void Abyss|Void Rifts|Debug
+Gui Add, DropDownList, x117 y136 w173 vDlist1, 2-3 Star Gates|Attack Loop|Boss Chest|Daily Tasks||Critical Abyss|Dimensional Trials|Dream Machine|Event Water Bomb Impact|Frontier Clash|Frontier Clash Hard|JO Carnival Party|JO Sadness Valley|Join game and Auto battle|Left-click Turbo|Raid|Sequential Phantasm|Void Abyss|Void Rifts|Debug
 Gui Font
 Gui Font, s11 Bold
 Gui Add, Text, x153 y112 w101 h23 +0x200 , Select a bot
@@ -237,6 +237,10 @@ ButtonStart▶:
 	{
 		#Include scripts/Dream Machine.ahk
 	}
+	Else if (Dlist1 = "Event Water Bomb Impact")
+	{
+		#Include scripts/Event Water Bomb Impact.ahk
+	}
 	Else if (Dlist1 = "Frontier Clash")
 	{
 		Loop
@@ -401,7 +405,8 @@ CommissaryBuy(file,x1,y1,x2,y2,object,timeout)
 	global FoundX, FoundY
 	Loop
 	{
-		ImageSearch, FoundX, FoundY, %x1%, %y1%, %x2%, %y2%, *50 img/%file%
+		Mousemove 0,0
+		ImageSearch, FoundX, FoundY, %x1%, %y1%, %x2%, %y2%, *60 img/%file%
 		If (ErrorLevel = 0)
 		{
 			ToolTip, %object% Found, 0,0

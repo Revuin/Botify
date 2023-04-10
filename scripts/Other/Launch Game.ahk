@@ -47,39 +47,46 @@ IfWinNotExist ahk_class UnrealWindow ;Start game again if it's closed
 	}
 	Search("CloseX.png","1690","170","1790","270","Close Button", 300)
 	click %FoundX%, %FoundY%
-	sleep 7000
+	sleep 15000
 	click 940, 530 ;Login
 	
 	
-	Loop 
+	Loop
 	{
-		Tooltip, Searching for Loading screen,0,0
+		Tooltip, Searching for Loading screen 1,0,0
 		ImageSearch, FoundX, FoundY, 460, 970, 1390, 1080, *5 img/Loading.png
 		If (ErrorLevel=0) 
 		{
 			Tooltip, Loading screen found,0,0
 			sleep 500
+			break
+		}
+		sleep 500
+	}
+	Loop
+	{
+		Tooltip, Searching for Loading screen 2,0,0
+		ImageSearch, FoundX, FoundY, 460, 970, 1390, 1080, *5 img/Loading.png
+		If (ErrorLevel=0) 
+		{
+			Tooltip, Loading screen found,0,0
+			sleep 500
+		}
+		Else
+		{
+			Tooltip, Loading screen not found,0,0
+			sleep 500
 			ImageSearch, FoundX, FoundY, 460, 970, 1390, 1080, *5 img/Loading.png
 			If (ErrorLevel=0) 
 			{
-				Tooltip, Loading screen found,0,0
+				Tooltip, Loading screen found again,0,0
 				sleep 500
 			}
 			Else
 			{
-				ImageSearch, FoundX, FoundY, 460, 970, 1390, 1080, *5 img/Loading.png
-				If (ErrorLevel=0) 
-				{
-					Tooltip, Loading screen found,0,0
-					sleep 500
-				}
-				Else
-				{
-					Tooltip, Loading screen not found,0,0
-					break
-				}
+				Tooltip, Loading screen not found again,0,0
+				break
 			}
 		}
-		sleep 500
 	}
 }

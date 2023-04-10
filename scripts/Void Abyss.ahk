@@ -105,7 +105,7 @@ Loop
 	}
 }
 send {Alt Up}
-sleep 50000
+sleep 90000
 sendInput {w DownR}
 sleep 3000
 sendInput {a DownR}
@@ -113,6 +113,7 @@ sleep 1000
 sendInput {a Up}
 sleep 1000
 sendInput {w Up}
+send {Tab}
 Loop
 {
 	#IncludeAgain scripts/Attack Loop.ahk

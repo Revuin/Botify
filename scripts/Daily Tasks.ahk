@@ -1,4 +1,4 @@
-﻿AppointedResearch = 0
+﻿AppointedResearch = 1
 
 
 Loop, 10 ;Check for Reward Recovery
@@ -136,7 +136,7 @@ ImageSearch, FoundX, FoundY, 790, 390, 1815, 885, *100 img/Claim_Weekly.png
 	}
 }
 
-If A_DDDD = Sunday
+If A_DDDD = Saturday
 {
 	Loop, 20 {
 		click 860, 500 ;Claim (Individual Weekly)
@@ -429,7 +429,7 @@ send {escape}
 sleep 2000
 
 ;Appointed Research =====================================================================================
-If (AppointedResearch = 1)
+If (AppointedResearch == 1)
 {
 	send b
 	Search("Missions.png","1770","550","1895","605","Missions", 30)
@@ -448,8 +448,10 @@ If (AppointedResearch = 1)
 		sleep 50
 	}
 	sleep 500
-	Search("RuinResearch.png","100","90","1910","355","Ruin Research", 30)
-	click %FoundX%, %FoundY% ;Ruin Research
+	
+	
+	Search("RebuiltExoskeleton.png","575","770","1060","1005","Rebuilt Exoskeleton", 30)
+	click %FoundX%, %FoundY% ;Rebuilt Exoskeleton
 	sleep 2000
 
 	ImageSearch, FoundX, FoundY, 755, 805, 1025, 885, *30 img/Research.png
@@ -507,7 +509,7 @@ If A_DDDD = Tuesday
 	sleep 2000
 	CommissaryBuy("GoldNucleus.png","600","110","1910","715","GoldNucleus", 30)
 	CommissaryBuy("ProofOfPurchase.png","600","110","1910","715","ProofOfPurchase", 30)
-	CommissaryBuy("SpacetimeCrystalFragments.png","600","110","1910","715","SpacetimeCrystalFragments", 30)
+	CommissaryBuy("SpacetimeCrystalFragments.png","600","320","1910","715","SpacetimeCrystalFragments", 30)
 
 	click 1310, 640, Left, Down
 	sleep 150
